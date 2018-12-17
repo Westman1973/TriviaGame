@@ -1,43 +1,43 @@
 // Questions
 var triviaQuestions = [{
     question: "In the song Twelve Days of Christmas, what is given on the 7th day?",
-    answerList: ["Turtle Doves", "Ladies dancing", "Swans a-swimming", "Golden Rings"],
+    choices: ["Turtle Doves", "Ladies dancing", "Swans a-swimming", "Golden Rings"],
     answer: 2
 },{
     question: "In what country did Silent Night originate?",
-    answerList: ["Germany", "Austria", "Belgium", "Canada"],
+    choices: ["Germany", "Austria", "Belgium", "Canada"],
     answer: 1
 },{
     question: "In what decade did Coca-Cola start using Santa Claus in advertisements?",
-    answerList: ["1920", "1940", "1960", "1980"],
+    choices: ["1920", "1940", "1960", "1980"],
     answer: 0
 },{
     question: "What was the first year that the Rockefeller Center Christmas Tree was put up?",
-    answerList: ["1937", "1929", "1933", "1931"],
+    choices: ["1937", "1929", "1933", "1931"],
     answer: 2
 },{
     question: "In what country did the custom of putting up a Christmas tree originate?",
-    answerList: ["Britain", "America", "Finland", "Germany"],
+    choices: ["Britain", "America", "Finland", "Germany"],
     answer: 3
 },{
     question: "Who created the first electric light Christmas display?",
-    answerList: ["Edward Johnson", "Thomas Edison", "Charles Wesley", "John Doe"],
+    choices: ["Edward Johnson", "Thomas Edison", "Charles Wesley", "John Doe"],
     answer: 1
 },{
     question: "What country is the Poinsettia, with its red and green foliage, native to?",
-    answerList: ["Mexico", "Norway", "Germany", "Cuba"],
+    choices: ["Mexico", "Norway", "Germany", "Cuba"],
     answer: 1
 },{
     question: "What is the most popular meal for Christmas in Japan?",
-    answerList: ["KFC Chicken", "Turkey", "Chicken Stir Fry", "McDonalds"],
+    choices: ["KFC Chicken", "Turkey", "Chicken Stir Fry", "McDonalds"],
     answer: 0
 },{
     question: "What northeastern US state holds the Guinness record for largest snowman?",
-    answerList: ["Vermont", "Washington", "Maine", "Alaska"],
+    choices: ["Vermont", "Washington", "Maine", "Alaska"],
     answer: 2   
 },{
     question: "What color is Rudolf's nose?",
-    answerList: ["Red", "Green", "Orange", "Black"],
+    choices: ["Red", "Green", "Orange", "Black"],
     answer: 0
 }]
 
@@ -87,15 +87,15 @@ function newQuestion(){
 	$('#gif').empty();
 	answered = true;
 	
-	//sets up new questions & answerList
+	//sets up new questions & choices
 	$('#currentQuestion').html('Question #'+(currentQuestion+1)+'/'+triviaQuestions.length);
 	$('.question').html('<h2>' + triviaQuestions[currentQuestion].question + '</h2>');
 	for(var i = 0; i < 4; i++){
 		var choices = $('<div>');
-		choices.text(triviaQuestions[currentQuestion].answerList[i]);
+		choices.text(triviaQuestions[currentQuestion].choices[i]);
 		choices.attr({'data-index': i });
 		choices.addClass('thisChoice');
-		$('.answerList').append(choices);
+		$('.choices').append(choices);
 	}
 	countdown();
 	//clicking an answer will pause the time and setup answerPage
@@ -129,7 +129,7 @@ function answerPage(){
 	$('.thisChoice').empty(); //Clears question page
 	$('.question').empty();
 
-	var rightAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
+	var rightAnswerText = triviaQuestions[currentQuestion].choices[triviaQuestions[currentQuestion].answer];
 	var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
 	$('#gif').html('<img src = "assets/images/'+ gifArray[currentQuestion] +'.gif" width = "400px">');
 	
