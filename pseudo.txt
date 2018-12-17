@@ -1,0 +1,32 @@
+Start Game
+    Button to start game
+    <button class='btn btn-primary' id='startBtn'>Start</button>
+    $('#startBtn').on('click', function(){
+	$(this).hide();
+	newGame();
+    starts timer = 30 or 60 secs
+    
+
+Trivia Questions
+multiple choice
+    var trivia = [{}]
+    question:
+    answerList: ["1", "2", "3", "4"]
+    answer:
+Wrong answer
+    var wrongAnswer
+Right answer
+    var rightAnswer
+
+Out of time
+    var timeUp
+Restart timer
+End of game
+
+Score 
+    Update score after question is answered
+    
+<div id='startOverBtn'></div>
+$('#startOverBtn').on('click', function(){
+	$(this).hide();
+	newGame();
