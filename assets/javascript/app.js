@@ -12,18 +12,6 @@ var triviaQuestions = [{
     choices: ["1920", "1940", "1960", "1980"],
     answer: 0
 },{
-    question: "What was the first year that the Rockefeller Center Christmas Tree was put up?",
-    choices: ["1937", "1929", "1933", "1931"],
-    answer: 2
-},{
-    question: "In what country did the custom of putting up a Christmas tree originate?",
-    choices: ["Britain", "America", "Finland", "Germany"],
-    answer: 3
-},{
-    question: "Who created the first electric light Christmas display?",
-    choices: ["Edward Johnson", "Thomas Edison", "Charles Wesley", "John Doe"],
-    answer: 1
-},{
     question: "What country is the Poinsettia, with its red and green foliage, native to?",
     choices: ["Mexico", "Norway", "Germany", "Cuba"],
     answer: 1
@@ -31,19 +19,11 @@ var triviaQuestions = [{
     question: "What is the most popular meal for Christmas in Japan?",
     choices: ["KFC Chicken", "Turkey", "Chicken Stir Fry", "McDonalds"],
     answer: 0
-},{
-    question: "What northeastern US state holds the Guinness record for largest snowman?",
-    choices: ["Vermont", "Washington", "Maine", "Alaska"],
-    answer: 2   
-},{
-    question: "What color is Rudolf's nose?",
-    choices: ["Red", "Green", "Orange", "Black"],
-    answer: 0
 }]
 
 console.log(triviaQuestions);
 
-var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10'];
+var imgArray = ['xmas1', 'xmas2', 'xmas3', 'xmas4', 'xmas5'];
 var currentQuestion; 
 var correctAnswer; 
 var incorrectAnswer; 
@@ -53,10 +33,10 @@ var time;
 var answered; 
 var userSelect;
 var messages = {
-	correct: "Yes, that's right!",
-	incorrect: "Sorry, that's not right.",
-	endTime: "Out of time!",
-	finished: "Alright! Let's see how well you did."
+	Right: "You are right!",
+	Wrong: "Sorry, that's not right.",
+	endTime: "Oh no!!! You ran out of time.",
+	finished: "Let's see your scores."
 }
 
 $('#startBtn').on('click', function(){
@@ -71,21 +51,20 @@ $('#startOverBtn').on('click', function(){
 
 function newGame(){
 	$('#finalMessage').empty();
-	$('#correctAnswers').empty();
-	$('#incorrectAnswers').empty();
+	$('#RightAnswers').empty();
+	$('#WrongAnswers').empty();
 	$('#unanswered').empty();
 	currentQuestion = 0;
-	correctAnswer = 0;
-	incorrectAnswer = 0;
+	RightAnswer = 0;
+	WrongAnswer = 0;
 	unanswered = 0;
 	newQuestion();
 }
 
 function newQuestion(){
 	$('#message').empty();
-	$('#correctedAnswer').empty();
-	$('#gif').empty();
-	answered = true;
+	$('#correctAnswer').empty();
+		answered = true;
 	
 	//sets up new questions & choices
 	$('#currentQuestion').html('Question #'+(currentQuestion+1)+'/'+triviaQuestions.length);
@@ -107,7 +86,7 @@ function newQuestion(){
 }
 
 function countdown(){
-	seconds = 15;
+	seconds = 5;
 	$('#timeLeft').html('<h3>Time Remaining: ' + seconds + '</h3>');
 	answered = true;
 	//sets timer to go down
@@ -129,22 +108,22 @@ function answerPage(){
 	$('.thisChoice').empty(); //Clears question page
 	$('.question').empty();
 
-	var rightAnswerText = triviaQuestions[currentQuestion].choices[triviaQuestions[currentQuestion].answer];
-	var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
-	$('#gif').html('<img src = "assets/images/'+ gifArray[currentQuestion] +'.gif" width = "400px">');
+	var RightAnswerText = triviaQuestions[currentQuestion].choices[triviaQuestions[currentQuestion].answer];
+	var RightAnswerIndex = triviaQuestions[currentQuestion].answer;
+	$('#img').html('<img src = "assets/images/'+ imgArray[currentQuestion] +'.img" width = "400px">');
 	
 	//checks to see correct, incorrect, or unanswered
 	if((userSelect == rightAnswerIndex) && (answered == true)){
-		correctAnswer++;
-		$('#message').html(messages.correct);
+		RightAnswer++;
+		$('#message').html(messages.Right);
 	} else if((userSelect != rightAnswerIndex) && (answered == true)){
-		incorrectAnswer++;
-		$('#message').html(messages.incorrect);
-		$('#correctedAnswer').html('The correct answer was: ' + rightAnswerText);
+		WrongAnswer++;
+		$('#message').html(messages.Wrong);
+		$('correctAnswer').html('The correct answer was: ' + RightAnswerText);
 	} else{
 		unanswered++;
 		$('#message').html(messages.endTime);
-		$('#correctedAnswer').html('The correct answer was: ' + rightAnswerText);
+		$('#correctAnswer').html('The correct answer was: ' + RightAnswerText);
 		answered = true;
 	}
 	
@@ -159,21 +138,14 @@ function answerPage(){
 function scoreboard(){
 	$('#timeLeft').empty();
 	$('#message').empty();
-	$('#correctedAnswer').empty();
-	$('#gif').empty();
+	$('#correctAnswer').empty();
+	
 
 	$('#finalMessage').html(messages.finished);
-	$('#correctAnswers').html("Correct Answers: " + correctAnswer);
-	$('#incorrectAnswers').html("Incorrect Answers: " + incorrectAnswer);
+	$('#RightAnswers').html("Right Answers: " + RightAnswer);
+	$('#WrongAnswers').html("Wrong Answers: " + WrongAnswer);
 	$('#unanswered').html("Unanswered: " + unanswered);
 
-	var audioElement = document.createElement("audio");
-	audioElement.setAttribute('src', 'assets/images/wildCard.mp3');
-	$('#startOverBtn').addClass('reset');
-	$('#startOverBtn').show();
-	$('#startOverBtn').html('Start Over?');
-	$('#startOverBtn').on("click", function() {
-		audioElement.play();
-	})
+	
 	
 }
