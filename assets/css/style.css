@@ -1,0 +1,53 @@
+body {
+    background-size: 95%;
+    background-repeat: no-repeat;
+	font-size: 25px;
+}
+
+header {
+	margin-bottom: 20px;
+}
+
+.title {
+    position: absolute;
+    top: 50px;
+    left: 16px;
+    font-size: 50px;
+}
+
+.btn-primary,.reset {
+	background-color: #F09218;
+	color: white;
+	font-size: 40px;
+	padding: 10px 150px 10px 150px;
+	border-radius: 20px;
+	border: 10px double #006297;
+}
+.btn-primary:hover, .reset:hover {
+	background-color: #FF0000;
+}
+
+.container {
+    position: relative;
+	margin-top: 225px;
+	text-align: center;
+	height: 100%;
+	width: 700px;
+}
+
+h2, #message, #finalMessage {
+	color: #006297;
+}
+
+.thisChoice:hover {
+	background-color: #006297;
+	color: white;
+	cursor: pointer;
+	border-radius: 20px;
+	box-shadow: -15px 0px 30px -10px #006297, 15px 0px 30px -10px #006297, 0px 0px 40px 0px rgba(0,98,151,0); 
+	box-shadow: -15px 0px 30px -10px #006297, 15px 0px 30px -10px #006297, 0px 0px 40px 0px rgba(0,98,151,0);
+}
+
+#gif {
+	margin: 20px;
+}
